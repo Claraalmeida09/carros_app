@@ -1,6 +1,7 @@
-import 'file:///C:/Users/cllar/AndroidStudioProjects/carros_app/lib/pages/login/login_page.dart';
+
+import 'package:carros_app/pages/login/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 
 void main() {
   runApp(MyApp());

@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:carros_app/pages/api_response.dart';
-import 'file:///C:/Users/cllar/AndroidStudioProjects/carros_app/lib/pages/carro/home_page.dart';
-import 'file:///C:/Users/cllar/AndroidStudioProjects/carros_app/lib/pages/login/login_api.dart';
-import 'file:///C:/Users/cllar/AndroidStudioProjects/carros_app/lib/pages/login/usuarios.dart';
+import 'package:carros_app/pages/carro/home_page.dart';
+import 'package:carros_app/pages/login/login_api.dart';
+import 'package:carros_app/pages/login/login_bloc.dart';
+import 'package:carros_app/pages/login/usuarios.dart';
+
 import 'package:carros_app/utils/alert.dart';
 import 'package:carros_app/utils/push.dart';
 import 'package:carros_app/widgets/app_button.dart';
@@ -15,28 +19,39 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   final _tLogin = TextEditingController();
   final _tSenha = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   final _focusSenha = FocusNode();
 
-  bool _showProgress = false;
+  final _bloc = LoginBloc();
+
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
+    Future<Usuario> future = Usuario.get();
+    future.then((Usuario user) {
+      if(user != null) {
+        push(context, HomePage(), replace: true);
+      }
+    });
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-        'Carros',
-        textAlign: TextAlign.center,
-      )),
+        title: Text(
+          'Carros',
+        ),
+        centerTitle: true,
+      ),
       body: _body(),
     );
   }
@@ -49,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           children: [
             AppText(
-              'E-mail',
+              'Login',
               'Digite o login',
               controller: _tLogin,
               validator: _validateLogin,
@@ -72,10 +87,16 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               height: 10,
             ),
-            AppButton(
-              'Login',
-              onPressed: _onClickLogin,
-              showProgress: _showProgress,
+            StreamBuilder<bool>(
+              stream: _bloc.stream,
+              initialData: false,
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                return AppButton(
+                  'Login',
+                  onPressed: _onClickLogin,
+                  showProgress: snapshot.data,
+                );
+              },
             )
           ],
         ),
@@ -111,11 +132,9 @@ class _LoginPageState extends State<LoginPage> {
 
     print('Email: $login, senha: $senha');
 
-    setState(() {
-      _showProgress = true;
-    });
 
-    ApiResponse response = await LoginApi.login(login, senha);
+
+    ApiResponse response = await _bloc.login(login, senha);
 
     if (response.ok) {
       Usuario user = response.result;
@@ -125,9 +144,12 @@ class _LoginPageState extends State<LoginPage> {
       alert(context, response.msg);
     }
 
-    setState(() {
-      _showProgress = false;
-    });
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+
+    _bloc.dispose();
+  }
 }

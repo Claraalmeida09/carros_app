@@ -13,7 +13,7 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 46,
+      height: 50,
       padding: EdgeInsets.only(top: 16),
       child: RaisedButton(
         child: showProgress ? Center(child: CircularProgressIndicator(

@@ -1,15 +1,33 @@
 
 import 'package:carros_app/pages/carro/carro.dart';
+import 'package:carros_app/pages/login/usuarios.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
+class TipoCarro{
+  static final String classicos = 'classicos';
+  static final String esportivos = 'esportivos';
+  static final String luxo = 'luxo';
+}
+
 class CarrosApi {
-  static Future<List<Carro>> getCarros() async {
-    var url = 'https://carros-springboot.herokuapp.com/api/v1/carros';
+  static Future<List<Carro>> getCarros(String tipo) async {
+
+    Usuario user = await Usuario.get();
+
+    Map<String, String> headers = {
+      "Content-Type": 'aplication/json',
+      'Authorization': 'Bearer ${user.token}'
+    };
+
+    print(headers);
+
+    var url = 'https://carros-springboot.herokuapp.com/api/v2/carros/tipo/$tipo';
 
     print("GET > $url");
 
-    var response = await http.get(url);
+    var response = await http.get(url, headers: headers);
 
     String json = response.body;
     print(json);

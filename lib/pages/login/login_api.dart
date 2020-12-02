@@ -1,8 +1,10 @@
 import 'dart:convert';
-import 'dart:math';
+
 
 import 'package:carros_app/pages/api_response.dart';
-import 'file:///C:/Users/cllar/AndroidStudioProjects/carros_app/lib/pages/login/usuarios.dart';
+import 'package:carros_app/pages/login/usuarios.dart';
+import 'package:carros_app/utils/prefs.dart';
+
 import 'package:http/http.dart' as http;
 
 class LoginApi {
@@ -30,6 +32,10 @@ class LoginApi {
 
       if(response.statusCode == 200) {
         final user = Usuario.fromJson(mapResponse);
+
+        user.save();
+
+
 
         return ApiResponse.ok(user);
       }
