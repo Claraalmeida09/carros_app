@@ -14,4 +14,4 @@ class LoginBloc extends SimpleBloc<bool>{
 
     return response;
   }
-}.
+}
