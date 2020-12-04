@@ -2,6 +2,7 @@ import 'package:carros_app/drawer_list.dart';
 import 'package:carros_app/pages/carro/carro.dart';
 import 'package:carros_app/pages/carro/carros_api.dart';
 import 'package:carros_app/pages/carro/carros_listview.dart';
+import 'package:carros_app/pages/carro/carros_page.dart';
 import 'package:carros_app/utils/prefs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -70,9 +71,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         : TabBarView(
     controller: _tabController,
     children: [
-    CarrosListView(TipoCarro.classicos),
-    CarrosListView(TipoCarro.esportivos),
-    CarrosListView(TipoCarro.luxo),
+    CarrosPage(TipoCarro.classicos),
+    CarrosPage(TipoCarro.esportivos),
+    CarrosPage(TipoCarro.luxo),
     ],
     ),
       drawer: DrawerList(),

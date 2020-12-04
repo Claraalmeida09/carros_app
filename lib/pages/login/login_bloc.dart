@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:carros_app/pages/api_response.dart';
-import 'package:carros_app/pages/carro/simple_bloc.dart';
+import 'file:///C:/Users/cllar/AndroidStudioProjects/carros_app/lib/utils/simple_bloc.dart';
 import 'package:carros_app/pages/login/login_api.dart';
 import 'package:carros_app/pages/login/usuarios.dart';
 
@@ -14,4 +14,4 @@ class LoginBloc extends SimpleBloc<bool>{
 
     return response;
   }
-}.
+}

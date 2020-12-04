@@ -6,9 +6,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 class TipoCarro{
-  static final String classicos = 'classicos';
-  static final String esportivos = 'esportivos';
-  static final String luxo = 'luxo';
+  static final String classicos = 'Classicos';
+  static final String esportivos = 'Esportivos';
+  static final String luxo = 'Luxo';
 }
 
 class CarrosApi {
