@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:carros_app/pages/api_response.dart';
-import 'package:carros_app/pages/carro/home_page.dart';
-import 'package:carros_app/pages/login/login_api.dart';
+import 'package:carros_app/pages/carros/home_page.dart';
 import 'package:carros_app/pages/login/login_bloc.dart';
 import 'package:carros_app/pages/login/usuarios.dart';
 
@@ -34,12 +33,7 @@ class _LoginPageState extends State<LoginPage> {
     // TODO: implement initState
     super.initState();
 
-    Future<Usuario> future = Usuario.get();
-    future.then((Usuario user) {
-      if(user != null) {
-        push(context, HomePage(), replace: true);
-      }
-    });
+
 
   }
 

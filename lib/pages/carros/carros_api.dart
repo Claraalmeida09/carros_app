@@ -1,5 +1,6 @@
 
-import 'package:carros_app/pages/carro/carro.dart';
+import 'package:carros_app/pages/carros/carro.dart';
+import 'package:carros_app/pages/favoritos/carro_dao.dart';
 import 'package:carros_app/pages/login/usuarios.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -21,7 +22,7 @@ class CarrosApi {
       'Authorization': 'Bearer ${user.token}'
     };
 
-    print(headers);
+   //print(headers);
 
     var url = 'https://carros-springboot.herokuapp.com/api/v2/carros/tipo/$tipo';
 
@@ -30,12 +31,11 @@ class CarrosApi {
     var response = await http.get(url, headers: headers);
 
     String json = response.body;
-    print(json);
+   //print(json);
 
     List list = convert.json.decode(json);
 
-    List<Carro> carros = list.map<Carro>((map) => Carro.fromJson(map)).toList();
-
+    List<Carro> carros = list.map<Carro>((map) => Carro.fromMap(map)).toList();
     return carros;
   }
 }

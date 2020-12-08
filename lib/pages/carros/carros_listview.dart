@@ -1,6 +1,7 @@
 
-import 'package:carros_app/pages/carro/carro.dart';
-import 'package:carros_app/pages/carro/carro_page.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carros_app/pages/carros/carro.dart';
+import 'package:carros_app/pages/carros/carro_page.dart';
 import 'package:carros_app/utils/push.dart';
 import 'package:flutter/material.dart';
 
@@ -26,8 +27,8 @@ class CarrosListView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Center(
-                    child: Image.network(
-                      c.urlFoto ?? "http://www.livroandroid.com.br/livro/carros/esportivos/Ferrari_FF.png",
+                    child: CachedNetworkImage(
+                      imageUrl: c.urlFoto ?? "https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Chevrolet_Corvette.png",
                       width: 250,
                     ),
                   ),

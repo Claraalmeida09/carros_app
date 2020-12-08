@@ -1,5 +1,6 @@
-import 'package:carros_app/pages/carro/carro.dart';
-import 'package:carros_app/pages/carro/loripsum_api.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carros_app/pages/carros/carro.dart';
+import 'package:carros_app/pages/carros/loripsum_api.dart';
 import 'package:carros_app/widgets/text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,8 @@ class _CarroPageState extends State<CarroPage> {
         padding: EdgeInsets.all(16),
         child: ListView(
           children: [
-            Image.network(widget.carro.urlFoto),
+            CachedNetworkImage(
+                imageUrl: widget.carro.urlFoto ?? "https://s3-sa-east-1.amazonaws.com/videos.livetouchdev.com.br/classicos/Chevrolet_Corvette.png"),
             _bloco1(),
             Divider(color: Colors.grey,),
             _bloco2(),
@@ -82,7 +84,7 @@ class _CarroPageState extends State<CarroPage> {
     return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
+              Flexible(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

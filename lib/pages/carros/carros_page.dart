@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:carros_app/pages/carro/carro.dart';
-import 'package:carros_app/pages/carro/carro_page.dart';
-import 'package:carros_app/pages/carro/carros_api.dart';
-import 'package:carros_app/pages/carro/carros_bloc.dart';
-import 'package:carros_app/pages/carro/carros_listview.dart';
-import 'package:carros_app/utils/push.dart';
+import 'package:carros_app/pages/carros/carro.dart';
+
+import 'package:carros_app/pages/carros/carros_bloc.dart';
+import 'package:carros_app/pages/carros/carros_listview.dart';
+
 import 'file:///C:/Users/cllar/AndroidStudioProjects/carros_app/lib/widgets/text_error.dart';
 import 'package:flutter/material.dart';
 
